@@ -6,7 +6,7 @@ public class WaterMove : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
-    public bool Mode = true; // true for Player 1 (WASD + Z), false for Player 2 (Arrow keys + Space)
+    public bool Mode = true; // true for Player 1 (WASD), false for Player 2 (Arrow keys)
     private Rigidbody rb;
     private bool isGrounded = true;
 
@@ -55,7 +55,7 @@ public class WaterMove : MonoBehaviour
     {
         if (Mode) // Player 1
         {
-            if (Input.GetKeyDown(KeyCode.Z) && isGrounded)
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
@@ -63,7 +63,7 @@ public class WaterMove : MonoBehaviour
         }
         else // Player 2
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
