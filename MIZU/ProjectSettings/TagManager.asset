@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Water
+puddle_gimmick
+  - puddle
+main
   layers:
   - Default
   - TransparentFX
