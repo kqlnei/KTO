@@ -6,13 +6,15 @@ public class WaterMove : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
-    public bool Mode = true; // true for Player 1 (WASD), false for Player 2 (Arrow keys)
     private Rigidbody rb;
     private bool isGrounded = true;
+    private ChararCh chararCh; // Reference to the ChararCh script
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // Get the ChararCh component from the parent object
+        chararCh = GetComponentInParent<ChararCh>();
     }
 
     void Update()
@@ -25,7 +27,7 @@ public class WaterMove : MonoBehaviour
     {
         float move = 0;
 
-        if (Mode) // Player 1
+        if (chararCh.Mode) // Player 1
         {
             if (Input.GetKey(KeyCode.D))
             {
@@ -53,7 +55,7 @@ public class WaterMove : MonoBehaviour
 
     void Jump()
     {
-        if (Mode) // Player 1
+        if (chararCh.Mode) // Player 1
         {
             if (Input.GetKeyDown(KeyCode.W) && isGrounded)
             {
