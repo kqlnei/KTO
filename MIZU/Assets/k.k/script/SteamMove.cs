@@ -8,18 +8,25 @@ public class SteamMove : MonoBehaviour
     public float jumpForce = 5f;
     private Rigidbody rb;
     private ChararCh chararCh; // Reference to the ChararCh script
+    private RiseGas riseGas;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         // Get the ChararCh component from the parent object
         chararCh = GetComponentInParent<ChararCh>();
+        riseGas = GetComponentInParent<RiseGas>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(riseGas.isRising)
+        {
+            Move();
+        }
+        
     }
     void Move()
     {

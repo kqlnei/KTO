@@ -7,7 +7,7 @@ public class RiseGas : MonoBehaviour
     public Transform targetObject; // ã‚É—ˆ‚½‚çã¸‚·‚é‘ÎÛ•¨
     public float riseSpeed = 5f;   // ã¸‘¬“x
     public float riseHeight = 30f;  // ã¸‚·‚é‚‚³
-    private bool isRising = false;
+    public bool isRising = false;
 
     public RotateObject rotateObjectScript;
 
