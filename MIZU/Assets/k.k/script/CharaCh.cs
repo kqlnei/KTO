@@ -8,18 +8,24 @@ public class ChararCh : MonoBehaviour
 
     GameObject[] characters;
     GameObject currentChar;
+    Vector3[] initialPositions; // 各キャラクターの初期位置を保持
 
     int _currentCharNum = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         // このオブジェクトの子オブジェクトをすべて取得
         List<GameObject> characterList = new List<GameObject>();
+        List<Vector3> initialPositionList = new List<Vector3>(); // 初期位置を保存するリスト
+
         foreach (Transform child in transform)
         {
             characterList.Add(child.gameObject);
+            initialPositionList.Add(child.position); // 初期位置を保存
         }
         characters = characterList.ToArray();
+        initialPositions = initialPositionList.ToArray();
 
         Debug.Log("I have " + characters.Length + " Changable Characters");
 
@@ -62,14 +68,38 @@ public class ChararCh : MonoBehaviour
             }
         }
     }
+
     void ChangeCharacter(int characterNum)
     {
-        foreach (GameObject gObj in characters)         // いったん全キャラクターを非アクティブにする
+        // 現在のキャラクターの位置と回転を保存する
+        Vector3 currentPos = Vector3.zero;
+        Quaternion currentRot = Quaternion.identity;
+        if (currentChar != null)
+        {
+            currentPos = currentChar.transform.position;
+            currentRot = currentChar.transform.rotation;
+        }
+
+        // いったん全キャラクターを非アクティブにする
+        foreach (GameObject gObj in characters)
         {
             gObj.SetActive(false);
         }
 
-        currentChar = characters[characterNum];         // 指定した番号のキャラクターだけをアクティブにする
+        // 新しいキャラクターをアクティブにする
+        currentChar = characters[characterNum];
         currentChar.SetActive(true);
+
+        // 保存した位置と回転を新しいキャラクターに適用する
+        if (currentPos != Vector3.zero)
+        {
+            currentChar.transform.position = currentPos;
+            currentChar.transform.rotation = currentRot;
+        }
+        else
+        {
+            // 初期位置を適用
+            currentChar.transform.position = initialPositions[characterNum];
+        }
     }
 }
