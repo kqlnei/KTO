@@ -7,7 +7,7 @@ public class IceMove : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
     private Rigidbody rb;
-    private bool isGrounded = true;
+    private bool ispuddle = true;
     private ChararCh chararCh; // Reference to the ChararCh script
     // Start is called before the first frame update
     void Start()
@@ -58,27 +58,27 @@ public class IceMove : MonoBehaviour
     {
         if (chararCh.Mode) // Player 1
         {
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+            if (Input.GetKeyDown(KeyCode.W) && ispuddle)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                isGrounded = false;
+                ispuddle = false;
             }
         }
         else // Player 2
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && ispuddle)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                isGrounded = false;
+                ispuddle = false;
             }
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("puddle"))
         {
-            isGrounded = true;
+            ispuddle = true;
         }
     }
 }

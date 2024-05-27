@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-puddle_gimmick
+  - Water
+  - Ground
   - puddle
-main
+  - Ice
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ main
   - 
   - Water
   - UI
-  - Fluids
+  - 
   - 
   - 
   - 
