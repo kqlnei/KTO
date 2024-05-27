@@ -32,7 +32,8 @@ public class RiseGas : MonoBehaviour
         if (isRising)
         {
             float step = riseSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.up * riseHeight, step);
+            transform.position = Vector3.MoveTowards(
+                transform.position, transform.position + Vector3.up * riseHeight, step);
         }
     }
 }
