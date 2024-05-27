@@ -22,10 +22,9 @@ public class SteamMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(riseGas.isRising)
-        {
+        
             Move();
-        }
+        
         
     }
     void Move()
