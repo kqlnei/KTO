@@ -107,7 +107,7 @@ Shader "Slime/Step4"
                     // 距離が0.01以下になったら、色と深度を書き込んで処理終了
                     if (dist < 0.01)
                     {
-                        o.col = fixed4(0, 1, 0, 0.5); // 塗りつぶし
+                        o.col = fixed4(0, 1, 1, 0.5); // 塗りつぶし(色変えるときはここ変えてね)
                         o.depth = getDepth(pos); // 深度書き込み
                         return o;
                     }

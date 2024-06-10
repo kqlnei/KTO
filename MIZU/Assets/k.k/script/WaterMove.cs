@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaterMove : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 5f;
+    public float jumpHeight = 5f; // ÉWÉÉÉìÉvÇÃçÇÇ≥
     private Rigidbody rb;
     private bool isGrounded = true;
     private ChararCh chararCh; // Reference to the ChararCh script
@@ -13,7 +13,6 @@ public class WaterMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        // Get the ChararCh component from the parent object
         chararCh = GetComponentInParent<ChararCh>();
     }
 
@@ -59,7 +58,7 @@ public class WaterMove : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W) && isGrounded)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                rb.velocity = new Vector3(rb.velocity.x, CalculateJumpSpeed(jumpHeight), rb.velocity.z);
                 isGrounded = false;
             }
         }
@@ -67,10 +66,15 @@ public class WaterMove : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                rb.velocity = new Vector3(rb.velocity.x, CalculateJumpSpeed(jumpHeight), rb.velocity.z);
                 isGrounded = false;
             }
         }
+    }
+
+    private float CalculateJumpSpeed(float jumpHeight)
+    {
+        return Mathf.Sqrt(2 * jumpHeight * Physics.gravity.magnitude);
     }
 
     private void OnCollisionEnter(Collision collision)
